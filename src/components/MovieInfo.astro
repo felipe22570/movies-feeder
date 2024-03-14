@@ -1,0 +1,46 @@
+---
+import type { IGenre, IMovieInfo } from "../types";
+
+interface Props {
+	movie: IMovieInfo;
+}
+
+const { movie } = Astro.props;
+---
+
+<div class="flex gap-20 w-full mt-12">
+	<img
+		src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
+		alt=""
+		class="w-72"
+		transition:name={`img-${movie.id}`}
+	/>
+	<div class="w-[50%]">
+		<h1 class="text-4xl font-bold mb-2" transition:name={`title-${movie.id}`}>{movie?.title}</h1>
+		<p class="italic mb-8 text-gray-500">{movie?.tagline}</p>
+
+		<div class="my-6" transition:name={`genres-${movie.id}`}>
+			{
+				movie?.genres.map((genre: IGenre) => (
+					<span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-xl text-sm mr-2">
+						{genre.name}
+					</span>
+				))
+			}
+		</div>
+
+		<p class="text-gray-500 text-sm">
+			<span class="font-bold">Release date:</span>
+			{movie?.release_date}
+		</p>
+		<p class="text-gray-500 text-sm">
+			<span class="font-bold">Duration:</span>
+			{movie?.runtime} min
+		</p>
+		<p class="text-gray-500 text-sm">
+			<span class="font-bold">Rating:</span>
+			{movie?.vote_average} / 10
+		</p>
+		<p class="mt-10">{movie?.overview}</p>
+	</div>
+</div>

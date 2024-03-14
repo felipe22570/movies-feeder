@@ -1,0 +1,19 @@
+---
+import { moviesApi } from "../../lib/moviesApi";
+import Layout from "../../layouts/Layout.astro";
+import type { IMovieInfo } from "../../types";
+import MovieInfo from "../../components/MovieInfo.astro";
+const { id } = Astro.params;
+
+const { data } = await moviesApi.get(`/movie/${id}`);
+
+if (!data) {
+	return Astro.redirect("/404");
+}
+
+const movie: IMovieInfo = data;
+---
+
+<Layout title={movie?.title}>
+	<MovieInfo movie={movie} />
+</Layout>

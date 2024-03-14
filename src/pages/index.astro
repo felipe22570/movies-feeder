@@ -1,0 +1,36 @@
+---
+import { moviesApi } from "../lib/moviesApi";
+import MovieCard from "../components/MovieCard.astro";
+import type { Movies, IGenre } from "../types";
+import Layout from "../layouts/Layout.astro";
+
+const response = await moviesApi.get("/trending/movie/day");
+const genresData = await moviesApi.get("/genre/movie/list");
+
+const movies: Movies = response.data;
+const genres: IGenre[] = genresData?.data?.genres;
+
+const getGenres = (genreList: number[]) => {
+	return genreList.map((id) => {
+		const genre = genres?.find((genre) => genre.id === id);
+		return genre?.name ?? "";
+	});
+};
+---
+
+<Layout title="Movies Feeder">
+	<h1 class="text-3xl font-bold mb-12">Trending movies</h1>
+	<div class="w-[90%] mx-auto grid grid-cols-4 gap-x-10 gap-y-3">
+		{
+			movies.results.map((movie) => (
+				<MovieCard
+					key={movie.id}
+					id={movie.id}
+					title={movie.title}
+					poster={movie.poster_path}
+					genres={getGenres(movie.genre_ids)}
+				/>
+			))
+		}
+	</div>
+</Layout>
