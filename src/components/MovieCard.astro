@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
 	key: number;
 	id: number;
@@ -14,10 +16,12 @@ const { id, title, poster, genres } = Astro.props;
 	class="shadow-md py-7 px-5 flex flex-col rounded-md cursor-pointer transition-all hover:scale-105"
 	href={`/movie/${id}`}
 >
-	<img
+	<Image
 		src={import.meta.env.PUBLIC_IMAGES_BASE_URL + poster}
-		alt=""
-		class="w-32 mx-auto"
+		alt={`Thumbnail of ${title}`}
+		width={128}
+		height={128}
+		class="mx-auto"
 		transition:name={`img-${id}`}
 	/>
 	<div class="mt-4">

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { IGenre, IMovieInfo } from "../types";
 
 interface Props {
@@ -9,10 +10,12 @@ const { movie } = Astro.props;
 ---
 
 <div class="flex gap-20 w-full sm:mt-7 lg:mt-12">
-	<img
+	<Image
 		src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
-		alt=""
-		class="hidden lg:block w-72"
+		alt={`Poster of ${movie?.title}`}
+		width={288}
+		height={288}
+		class="hidden lg:block"
 		transition:name={`img-${movie.id}`}
 	/>
 	<div class="lg:w-[50%] flex flex-col items-center xl:block">
@@ -21,10 +24,12 @@ const { movie } = Astro.props;
 		</h1>
 		<p class="italic mb-8 text-gray-500">{movie?.tagline}</p>
 
-		<img
+		<Image
 			src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
-			alt=""
-			class="lg:hidden w-72"
+			alt={`Poster of ${movie?.title}`}
+			width={288}
+			height={288}
+			class="lg:hidden"
 			transition:name={`img-${movie.id}`}
 		/>
 
