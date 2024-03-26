@@ -20,7 +20,9 @@ const getGenres = (genreList: number[]) => {
 
 <Layout title="Movies Feeder">
 	<h1 class="text-3xl font-bold mb-12">Trending movies</h1>
-	<div class="w-[90%] mx-auto grid grid-cols-4 gap-x-10 gap-y-3">
+	<div
+		class="md:w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-2 md:gap-x-10 gap-y-3"
+	>
 		{
 			movies.results.map((movie) => (
 				<MovieCard

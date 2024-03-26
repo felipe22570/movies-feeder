@@ -8,18 +8,27 @@ interface Props {
 const { movie } = Astro.props;
 ---
 
-<div class="flex gap-20 w-full mt-12">
+<div class="flex gap-20 w-full sm:mt-7 lg:mt-12">
 	<img
 		src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
 		alt=""
-		class="w-72"
+		class="hidden lg:block w-72"
 		transition:name={`img-${movie.id}`}
 	/>
-	<div class="w-[50%]">
-		<h1 class="text-4xl font-bold mb-2" transition:name={`title-${movie.id}`}>{movie?.title}</h1>
+	<div class="lg:w-[50%] flex flex-col items-center xl:block">
+		<h1 class="text-4xl font-bold mb-2 text-center lg:text-left" transition:name={`title-${movie.id}`}>
+			{movie?.title}
+		</h1>
 		<p class="italic mb-8 text-gray-500">{movie?.tagline}</p>
 
-		<div class="my-6" transition:name={`genres-${movie.id}`}>
+		<img
+			src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
+			alt=""
+			class="lg:hidden w-72"
+			transition:name={`img-${movie.id}`}
+		/>
+
+		<div class="my-6 flex flex-wrap" transition:name={`genres-${movie.id}`}>
 			{
 				movie?.genres.map((genre: IGenre) => (
 					<span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-xl text-sm mr-2">
@@ -41,6 +50,6 @@ const { movie } = Astro.props;
 			<span class="font-bold">Rating:</span>
 			{movie?.vote_average} / 10
 		</p>
-		<p class="mt-10">{movie?.overview}</p>
+		<p class="mt-10 mx-5 sm:mx-0">{movie?.overview}</p>
 	</div>
 </div>
