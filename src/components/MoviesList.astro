@@ -1,0 +1,31 @@
+---
+import { moviesApi } from "../lib/moviesApi";
+import Card from "./Card.astro";
+import type { Movies, IGenre } from "../types";
+
+const response = await moviesApi.get("/trending/movie/week");
+const genresData = await moviesApi.get("/genre/movie/list");
+
+const movies: Movies = response.data;
+const genres: IGenre[] = genresData?.data?.genres;
+
+const getGenres = (genreId: number) => {
+	return genres?.find((genre) => genre.id === genreId)?.name ?? "";
+};
+---
+
+<div class="mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-2 gap-y-3">
+	{
+		movies.results.map((movie) => (
+			<div class="h-full mr-3">
+				<Card
+					key={movie.id}
+					id={movie.id}
+					title={movie.title}
+					poster={movie.poster_path}
+					genre={getGenres(movie.genre_ids[0])}
+				/>
+			</div>
+		))
+	}
+</div>
