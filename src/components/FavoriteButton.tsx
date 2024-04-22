@@ -5,13 +5,16 @@ function FavoriteButton() {
 	};
 
 	return (
-		<div className="p-2 rounded-full bg-gray-500 bg-opacity-65 text-white" onClick={handleFavorite}>
+		<div
+			className="p-2 rounded-full bg-gray-500 bg-opacity-65 text-white cursor-pointer"
+			onClick={handleFavorite}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="20"
 				height="20"
 				viewBox="0 0 256 256"
-				className="hover:text-red-600"
+				className="hover:text-red-500"
 			>
 				<path
 					fill="currentColor"

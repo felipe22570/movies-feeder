@@ -37,9 +37,6 @@ function Navbar() {
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a>Item 3</a>
-						</li>
 					</ul>
 				</div>
 				<a href="/" className="btn btn-ghost text-xl">
@@ -63,9 +60,6 @@ function Navbar() {
 								</li>
 							</ul>
 						</details>
-					</li>
-					<li>
-						<a>Item 3</a>
 					</li>
 					<li>
 						<a href="/login" className="btn ml-5">

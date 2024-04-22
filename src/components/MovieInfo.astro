@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { IGenre, IMovieInfo } from "../types";
+import FavoriteButton from "./FavoriteButton";
 
 interface Props {
 	movie: IMovieInfo;
@@ -10,28 +11,41 @@ const { movie } = Astro.props;
 ---
 
 <div class="flex gap-20 w-full sm:mt-7 lg:mt-12">
-	<Image
-		src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
-		alt={`Poster of ${movie?.title}`}
-		width={288}
-		height={288}
-		class="hidden lg:block"
-		transition:name={`img-${movie.id}`}
-	/>
-	<div class="lg:w-[50%] flex flex-col items-center xl:block">
-		<h1 class="text-4xl font-bold mb-2 text-center lg:text-left" transition:name={`title-${movie.id}`}>
-			{movie?.title}
-		</h1>
-		<p class="italic mb-8 text-gray-500">{movie?.tagline}</p>
-
+	<div class="relative hidden lg:block">
 		<Image
 			src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
 			alt={`Poster of ${movie?.title}`}
 			width={288}
 			height={288}
-			class="lg:hidden"
 			transition:name={`img-${movie.id}`}
 		/>
+		<div class="absolute top-4 right-4">
+			<FavoriteButton client:load transition:name="favorite-button" />
+		</div>
+	</div>
+	<div class="lg:w-[50%] flex flex-col items-center xl:block">
+		<div class="flex items-center gap-7">
+			<h1
+				class="text-4xl font-bold mb-2 text-center lg:text-left"
+				transition:name={`title-${movie.id}`}
+			>
+				{movie?.title}
+			</h1>
+		</div>
+		<p class="italic mb-8 text-gray-500">{movie?.tagline}</p>
+
+		<div class="relative lg:hidden">
+			<Image
+				src={import.meta.env.PUBLIC_IMAGES_BASE_URL + movie?.poster_path}
+				alt={`Poster of ${movie?.title}`}
+				width={288}
+				height={288}
+				transition:name={`img-${movie.id}`}
+			/>
+			<div class="absolute top-4 right-4">
+				<FavoriteButton client:load transition:name="favorite-button" />
+			</div>
+		</div>
 
 		<div class="my-6 flex flex-wrap" transition:name={`genres-${movie.id}`}>
 			{

@@ -26,8 +26,8 @@ const { id, title, poster, genre } = Astro.props;
 			class="rounded-lg object-cover w-full"
 			transition:name={`img-${id}`}
 		/>
-		<div class="absolute bottom-3 right-3">
-			<FavoriteButton client:load />
+		<div class="absolute top-3 right-3">
+			<FavoriteButton client:load transition:name="favorite-button" />
 		</div>
 	</div>
 	<div class="mt-3 px-3">
