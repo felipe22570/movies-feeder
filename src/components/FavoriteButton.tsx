@@ -1,6 +1,11 @@
 function FavoriteButton() {
+	const handleFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+	};
+
 	return (
-		<div className="p-2 rounded-full bg-gray-500 bg-opacity-65 text-white">
+		<div className="p-2 rounded-full bg-gray-500 bg-opacity-65 text-white" onClick={handleFavorite}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="20"

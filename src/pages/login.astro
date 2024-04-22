@@ -1,0 +1,20 @@
+---
+import LoginComponent from "../components/login/index.tsx";
+
+import "@/styles/globals.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login-MoviesFeeder</title>
+	</head>
+	<body>
+		<div class="navbar bg-base-100">
+			<a href="/" class="btn btn-ghost text-xl">MoviesFeeder</a>
+		</div>
+		<LoginComponent client:load />
+	</body>
+</html>
