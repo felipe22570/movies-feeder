@@ -1,4 +1,5 @@
 ---
+import { Toaster } from "@/components/ui/toaster";
 import LoginComponent from "../components/login/index.tsx";
 
 import "@/styles/globals.css";
@@ -16,5 +17,6 @@ import "@/styles/globals.css";
 			<a href="/" class="btn btn-ghost text-xl">MoviesFeeder</a>
 		</div>
 		<LoginComponent client:load />
+		<Toaster client:load />
 	</body>
 </html>

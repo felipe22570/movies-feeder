@@ -7,6 +7,8 @@ const LoginForm: React.FC = () => {
 		password: "",
 	});
 
+	const [error, setError] = useState("");
+
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setUser((prevUser) => ({
@@ -15,9 +17,8 @@ const LoginForm: React.FC = () => {
 		}));
 	};
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		// Perform login logic here
 	};
 
 	return (
@@ -67,6 +68,7 @@ const LoginForm: React.FC = () => {
 								onChange={handleChange}
 							/>
 						</label>
+						{error && <p className="text-red-500">{error}</p>}
 					</div>
 				</CardContent>
 				<CardFooter className="flex justify-end">
